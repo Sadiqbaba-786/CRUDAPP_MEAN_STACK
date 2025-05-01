@@ -1,0 +1,40 @@
+<div class="shadow p-4 border">
+  <div class="flex justify-between p-4">
+    <h2 class="text-xl font-semibold">Users Data</h2>
+    <button mat-raised-button color="primary" routerLink="/users/add">
+      Add User
+    </button>
+  </div>
+  <table>
+    <thead style="background-color: #27296d;color:white">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of users; track $index) {
+      <tr>
+        <td style="text-align: center;"> {{ user.name }}</td>
+        <td style="text-align: center;"> {{ user.email }}</td>
+        <td style="text-align: center;"> {{ user.age }}</td>
+        <td style="text-align: center;"> {{ user.address }}</td>
+        <td style="text-align: center;"> 
+          <button
+            mat-raised-button
+            color="accent"
+            class="mr-4"
+            [routerLink]="'/users/' + user._id"
+          >
+            Edit
+          </button>
+          <button mat-raised-button color="warn" (click)="delete(user._id!)">Delete</button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
